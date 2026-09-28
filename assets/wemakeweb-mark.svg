@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">WeMakeWeb mark</title>
+  <defs>
+    <linearGradient id="background" x1="8" y1="6" x2="56" y2="58" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2f68ff"/>
+      <stop offset="1" stop-color="#111820"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="18" fill="url(#background)"/>
+  <path d="M14 19l8.2 27h7.2L32 35.8 34.6 46h7.2L50 19h-7.2l-4.7 17.4L34 19h-4l-4.1 17.4L21.2 19H14z" fill="#fff"/>
+  <circle cx="49" cy="15" r="4" fill="#d9ff66"/>
+</svg>
