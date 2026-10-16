@@ -4,8 +4,8 @@
   --paper: #f5f4ef;
   --white: #ffffff;
   --line: rgba(16, 24, 32, 0.14);
-  --blue: #315cf4;
-  --blue-soft: #dfe7ff;
+  --blue: #6d28d9;
+  --blue-soft: #ede9fe;
   --lime: #d9ff66;
   --orange: #ff7548;
   --radius: 28px;
@@ -52,7 +52,7 @@ select {
 }
 
 .shell {
-  width: min(100% - 48px, 1380px);
+  width: min(calc(100% - 48px), 1380px);
   margin-inline: auto;
 }
 
@@ -107,9 +107,13 @@ select {
 }
 
 .loader__brand span {
+  display: block;
+  margin-top: 10px;
   color: var(--lime);
-  font-size: 0.25em;
-  vertical-align: top;
+  font-size: 0.28em;
+  letter-spacing: 0.16em;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 .loader__line {
@@ -180,6 +184,7 @@ select {
 }
 
 .brand span {
+  margin-left: 3px;
   color: var(--blue);
 }
 
@@ -1983,7 +1988,7 @@ select {
 
 @media (max-width: 640px) {
   .shell {
-    width: min(100% - 28px, 1380px);
+    width: min(calc(100% - 28px), 1380px);
   }
 
   .section {
@@ -1992,11 +1997,12 @@ select {
 
   .site-header {
     inset: 10px 12px auto;
+    width: calc(100% - 24px);
     min-height: 58px;
     padding-left: 18px;
   }
 
-  .brand { font-size: 18px; }
+  .brand { min-width: 0; font-size: 16px; }
 
   .hero {
     min-height: 850px;
@@ -2008,7 +2014,7 @@ select {
   }
 
   .hero__title {
-    font-size: clamp(38px, 11.2vw, 56px);
+    font-size: clamp(36px, 10.2vw, 50px);
     line-height: .91;
   }
 

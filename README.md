@@ -1,4 +1,4 @@
-# WeMakeWeb Agency Website
+# BrandedUK Digital Agency Website
 
 A standalone, responsive agency landing page built with semantic HTML, CSS and vanilla JavaScript.
 
@@ -14,7 +14,7 @@ Then open `http://localhost:4173`.
 
 ## Before launch
 
-- Agency branding is set to `WeMakeWeb`.
+- Agency branding is set to `BrandedUK Digital`.
 - Confirm that the selected projects, metrics and testimonial are approved for public use.
 - Replace WhatsApp with a booking-calendar link if preferred.
 - Add final privacy and terms pages.
