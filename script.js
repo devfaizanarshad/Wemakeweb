@@ -4,6 +4,7 @@ const header = document.querySelector('.site-header');
 const progress = document.querySelector('.progress span');
 const menuToggle = document.querySelector('.menu-toggle');
 const mobileLinks = document.querySelectorAll('.mobile-nav a');
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 window.addEventListener('load', () => {
   window.setTimeout(() => {
@@ -12,13 +13,13 @@ window.addEventListener('load', () => {
     if (window.location.hash) {
       document.querySelector(window.location.hash)?.scrollIntoView();
     }
-  }, 550);
+  }, 120);
 });
 
 window.setTimeout(() => {
   loader?.classList.add('is-hidden');
   body.classList.add('is-ready');
-}, 1800);
+}, 900);
 
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
@@ -77,7 +78,7 @@ const metricObserver = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('[data-count]').forEach((element) => metricObserver.observe(element));
 
-if (window.matchMedia('(pointer: fine)').matches) {
+if (window.matchMedia('(pointer: fine)').matches && !reduceMotion) {
   document.querySelectorAll('[data-tilt]').forEach((card) => {
     card.addEventListener('mousemove', (event) => {
       const bounds = card.getBoundingClientRect();
@@ -91,6 +92,78 @@ if (window.matchMedia('(pointer: fine)').matches) {
     });
   });
 }
+
+if (window.matchMedia('(pointer: fine)').matches && !reduceMotion) {
+  const cursorGlow = document.querySelector('.cursor-glow');
+  let pointerX = window.innerWidth * 0.5;
+  let pointerY = window.innerHeight * 0.35;
+  let glowX = pointerX;
+  let glowY = pointerY;
+
+  window.addEventListener('pointermove', (event) => {
+    pointerX = event.clientX;
+    pointerY = event.clientY;
+    cursorGlow?.classList.add('is-active');
+  }, { passive: true });
+
+  const animateGlow = () => {
+    glowX += (pointerX - glowX) * 0.14;
+    glowY += (pointerY - glowY) * 0.14;
+    cursorGlow?.style.setProperty('--cursor-x', `${glowX}px`);
+    cursorGlow?.style.setProperty('--cursor-y', `${glowY}px`);
+    requestAnimationFrame(animateGlow);
+  };
+  requestAnimationFrame(animateGlow);
+
+  document.querySelectorAll('.button').forEach((button) => {
+    button.addEventListener('pointermove', (event) => {
+      const bounds = button.getBoundingClientRect();
+      button.style.setProperty('--mag-x', `${(event.clientX - bounds.left - bounds.width / 2) * 0.12}px`);
+      button.style.setProperty('--mag-y', `${(event.clientY - bounds.top - bounds.height / 2) * 0.16}px`);
+    });
+    button.addEventListener('pointerleave', () => {
+      button.style.setProperty('--mag-x', '0px');
+      button.style.setProperty('--mag-y', '0px');
+    });
+  });
+
+  document.querySelectorAll('.principle, .service-card, .project-card, .testimonial-card, .metric').forEach((card) => {
+    card.addEventListener('pointermove', (event) => {
+      const bounds = card.getBoundingClientRect();
+      card.style.setProperty('--pointer-x', `${((event.clientX - bounds.left) / bounds.width) * 100}%`);
+      card.style.setProperty('--pointer-y', `${((event.clientY - bounds.top) / bounds.height) * 100}%`);
+    });
+  });
+}
+
+if (!reduceMotion) {
+  const heroImage = document.querySelector('.hero__visual img');
+  const heroOrbit = document.querySelector('.hero__orbit');
+  let parallaxQueued = false;
+  const updateParallax = () => {
+    const amount = Math.min(window.scrollY, window.innerHeight);
+    heroImage?.style.setProperty('--hero-shift', `${amount * 0.09}px`);
+    heroOrbit?.style.setProperty('--orbit-shift', `${amount * -0.06}px`);
+    parallaxQueued = false;
+  };
+  window.addEventListener('scroll', () => {
+    if (parallaxQueued) return;
+    parallaxQueued = true;
+    requestAnimationFrame(updateParallax);
+  }, { passive: true });
+}
+
+const sectionObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (!entry.isIntersecting) return;
+    const id = entry.target.id;
+    document.querySelectorAll('.desktop-nav a, .mobile-nav a').forEach((link) => {
+      link.classList.toggle('is-active', link.getAttribute('href') === `#${id}`);
+    });
+  });
+}, { rootMargin: '-35% 0px -55%', threshold: 0 });
+
+document.querySelectorAll('main section[id]').forEach((section) => sectionObserver.observe(section));
 
 document.querySelectorAll('.faq details').forEach((item) => {
   item.addEventListener('toggle', () => {

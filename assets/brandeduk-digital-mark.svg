@@ -2,11 +2,12 @@
   <title id="title">BrandedUK Digital mark</title>
   <defs>
     <linearGradient id="background" x1="8" y1="6" x2="56" y2="58" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#8b5cf6"/>
-      <stop offset="1" stop-color="#4c1d95"/>
+      <stop stop-color="#C952DE"/>
+      <stop offset="0.52" stop-color="#7A52CC"/>
+      <stop offset="1" stop-color="#273469"/>
     </linearGradient>
   </defs>
   <rect width="64" height="64" rx="18" fill="url(#background)"/>
   <path d="M18 15h16.5c8.3 0 13.5 4 13.5 10.5 0 4-2.1 7-5.8 8.7 4.8 1.5 7.3 4.9 7.3 9.5C49.5 51 43.8 55 34.8 55H18V15zm9 7.5v8.8h7c3.3 0 5.2-1.6 5.2-4.4 0-2.9-1.9-4.4-5.4-4.4H27zm0 15.6v9.4h7.6c3.9 0 5.9-1.6 5.9-4.7 0-3.2-2-4.7-6-4.7H27z" fill="#fff"/>
-  <circle cx="49" cy="15" r="4" fill="#d9ff66"/>
+  <circle cx="49" cy="15" r="4" fill="#FF7A00"/>
 </svg>
